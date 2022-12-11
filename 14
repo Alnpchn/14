@@ -1,0 +1,101 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> 
+#include <locale.h> 
+#define N 10 
+double* full_elemets(double* ptr_array, int n)
+{
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+	{
+		ptr_array[i] = rand() % 100;
+	}
+	return 0;
+}
+int put_elements(double* ptr_array, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("%f\n", ptr_array[i]);
+	}
+	return 0;
+}
+double* calc_elements(double* ptr_array, int n)
+{
+	int sum = 0;
+	int j;
+	for (j = n - 1; j >= 0; j--)
+	{
+		if (ptr_array[j] > 0) break;
+	}
+	for (int m = 0; m < j; m++)
+	{
+		sum = sum + ptr_array[m];
+	}
+	printf("Сумма всех элементов %d\n", sum);
+	return sum;
+}
+double sum_elements(double* ptr_array, int begin, int end)
+{
+	int sums = 0;
+	for (begin; begin <= end; begin++)
+	{
+		sums = sums + ptr_array[begin];
+	}
+
+	return sums;
+}
+int find_element(double* ptr_array, int n, double element)
+{
+	int index;
+	for (int h = 0; h < n; h++)
+	{
+		if (ptr_array[h] == element)
+		{
+			index = h;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+	printf("Index %d", index);
+	return index;
+}
+int find_min_element(double* ptr_array, int n)
+{
+	int min = ptr_array[0];
+	int l = 0;
+	for (int g = 0; g < n; g++)
+	{
+		if (ptr_array[g] < min)
+		{
+			min = ptr_array[g];
+			l = g;
+		}
+	}
+	return l;
+}
+int main()
+{
+	setlocale(LC_ALL, "RUS");
+	double array[N];
+	full_elemets(array, N);
+	put_elements(array, N);
+	printf("Сумма всех элементов %d\n", calc_elements(array, N));
+	int begin;
+	int end;
+	int indexOfMax = 0;
+	int indexOfMin = 0;
+	printf("Введите начальный индекс\n");
+	scanf("%d", &begin);
+	printf("Введите конечный индекс\n");
+	scanf("%d", &end);
+	printf("Сумма  элементов от индекса %d к индексу %d равна %d", sum_elements(array, begin, end));
+	double element;
+	printf("\nВведите элемент\n");
+	scanf("%lf", &element);
+	printf("Индекс %lf", find_element(array, N, element));
+	puts("\nЗадание 3");
+	printf("Индекс минимального элемента %d", find_min_element(array, N));
+}
