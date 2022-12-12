@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include<locale.h>
+#include <stdlib.h>
+int type(int n) 
+{
+    int res;
+    if (n == 0) 
+    {
+        res = 0;
+
+    }
+    else 
+        if (n > 0) 
+    {
+        res = 1;
+    }
+    else 
+    {
+        res = -1;
+    }
+    return res;
+}
+int find_el(int* a, int answer, int n, int (*type)(int)) 
+{
+    int first = -2;
+    int last = -2;
+    for (int i = 0; i < n; i++) {
+        if (type(a[i]) == answer && first == -2) 
+        {
+            first = i;
+        }
+        else 
+            if (type(a[i]) == answer && first != -2) 
+        {
+            last = i;
+        }
+    }
+    int lenght = last - first;
+    int ind = lenght / 2;
+    return ind;
+}
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    int answer;
+    printf(":Введите тип: (1-положительное значение, -1-отрицательное значение, 0-нулевое значение элемента)\n ");
+    scanf("%d", &answer);
+    int n = 5;
+    int a[5];
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &a[i]); // &a[i] - адрес i-го элемента массива
+    }
+    int result = find_el(a, answer, n, type);
+    printf("Результат: ");
+    printf("%d", a[result]);
+    return 0;
+}
