@@ -1,0 +1,50 @@
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h> 
+#include <locale.h> 
+double* full_elemets(double* ptr_array, int n)
+{
+	srand(time(NULL));
+	for (int i = 0; i < n; i++)
+	{
+		ptr_array[i] = -10+rand() % 100;
+	}
+	return 0;
+}
+int put_elements(double* ptr_array, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		printf("%f\n", ptr_array[i]);
+	}
+	return 0;
+}
+int find_el(int* a, int answer, int n, int (*type)(int))
+{
+    int first = -2;
+    int last = -2;
+    for (int i = 0; i < n; i++) {
+        if (type(a[i]) == answer && first == -2)
+        {
+            first = i;
+        }
+        else
+            if (type(a[i]) == answer && first != -2)
+            {
+                last = i;
+            }
+    }
+    int lenght = last - first;
+    int ind = lenght / 2;
+    return ind;
+}
+int main()
+{
+    setlocale(LC_ALL, "RUS");
+    int answer;
+    int i;
+    int a[5];
+    printf(":Введите тип: (1-положительное значение, -1-отрицательное значение, 0-нулевое значение элемента)\n ");
+    scanf("%d", &answer);
+    printf("a[%d]", a[5]);
+}
