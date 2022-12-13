@@ -7,7 +7,7 @@ double* full_elemets(double* ptr_array, int n)
 	srand(time(NULL));
 	for (int i = 0; i < n; i++)
 	{
-		ptr_array[i] = -10+rand() % 100;
+		ptr_array[i] = -10+rand() % 10;
 	}
 	return 0;
 }
@@ -47,4 +47,8 @@ int main()
     printf(":Введите тип: (1-положительное значение, -1-отрицательное значение, 0-нулевое значение элемента)\n ");
     scanf("%d", &answer);
     printf("a[%d]", a[5]);
+    int result = find_el(a, answer, n, type);
+    printf("Результат: ");
+    printf("%d", a[result]);
+    return 0;
 }
