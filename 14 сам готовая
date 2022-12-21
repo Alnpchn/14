@@ -1,0 +1,64 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define XMIN -10
+#define XMAX 10
+double full_elements(int* a, int n) {
+    for (int i = 0; i < n; i++) {
+        a[i]= XMIN + 1.f * (XMAX - XMIN) * rand() / RAND_MAX;
+    }
+}
+int put_elements(int* a, int n) {
+    for (int i = 0; i < n; i++) {
+        printf(" %d", a[i]);
+    }
+    printf("\n");
+}
+int get_type(int n) {
+    int res;
+    if (n == 0) {
+        res = 0;
+    }
+    else if (n > 0) {
+        res = 1;
+    }
+    else {
+        res = -1;
+    }
+    return res;
+}
+int find_el(int* a, int answer, int n, int (*get_type)(int)) {
+    int first = -2;
+    int last = -2;
+    int ind;
+    for (int i = 0; i < n; i++) {
+        if (get_type(a[i]) == answer && first == -2) {
+            first = i;
+        }
+        else if (get_type(a[i]) == answer && first != -2) {
+            last = i;
+        }
+    }
+    if (last == -2 && first == -2) {
+        return 0;
+    }
+    else if (last == -2) {
+        return first;
+    }
+    int lenght = last - first;
+    ind = lenght / 2;
+    return ind;
+}
+int main()
+{
+    int answer;
+    printf("enter type: ");
+    scanf("%d", &answer);
+    int n = 5;
+    int a[5];
+    full_elements(a, n);
+    put_elements(a, n);
+    int result = find_el(a, answer, n, get_type);
+    printf("result: ");
+    printf("%d", a[result]);
+    return 0;
+}
