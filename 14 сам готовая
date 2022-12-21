@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale.h>
 #define XMIN -10
 #define XMAX 10
 double full_elements(int* a, int n) {
@@ -50,15 +51,16 @@ int find_el(int* a, int answer, int n, int (*get_type)(int)) {
 }
 int main()
 {
+    setlocale(LC_ALL, "RUS");
     int answer;
-    printf("enter type: ");
+    printf("Введите тип: ");
     scanf("%d", &answer);
     int n = 5;
     int a[5];
     full_elements(a, n);
     put_elements(a, n);
     int result = find_el(a, answer, n, get_type);
-    printf("result: ");
+    printf("Результат: ");
     printf("%d", a[result]);
     return 0;
 }
